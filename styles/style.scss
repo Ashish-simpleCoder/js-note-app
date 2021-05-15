@@ -1,0 +1,252 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: 0.3s ease;
+}
+label {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+body {
+    background: var(--body-bg-clr);
+    min-height: 100vh;
+    position: relative;
+}
+:root {
+    --body-bg-clr: linear-gradient(
+        145deg,
+        rgb(101, 164, 236),
+        rgb(77, 235, 169)
+    );
+
+    --primary-clr: rgb(194, 11, 11);
+    --normal-font-clr: rgb(10, 10, 10);
+    --input-bg-clr: rgb(243, 241, 241);
+    --input-focus-bg-clr: rgb(255, 130, 130);
+
+    --note-list-bg-clr: linear-gradient(
+        145deg,
+        rgb(255, 83, 121),
+        rgb(31, 31, 230)
+    );
+    --edit-btn-font-clr: white;
+    --edit-btn-bg-clr: green;
+    --delete-btn-bg-clr: rgb(165, 7, 7);
+
+    --edit-btn-hover-font-clr: rgb(0, 163, 0);
+    --delete-btn-hover-font-clr: rgb(197, 4, 4);
+}
+button {
+    cursor: pointer;
+}
+main {
+    width: clamp(90vw, 150rem, 90vw);
+    max-width: 150rem;
+    margin: 0 auto;
+    // border: 1px solid red;
+}
+header {
+    width: 90vw;
+    max-width: 150rem;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(0, 27, 6);
+    h1 {
+        font-size: clamp(2rem, 2.8rem, 3vw);
+        font-weight: 100;
+        margin: 0.5rem 0;
+        @media screen and (max-width: 620px) {
+            font-weight: bold;
+        }
+        span {
+            color: rgb(211, 3, 65);
+        }
+    }
+}
+.note-input-section {
+    // border:1px solid red;
+    margin: 3rem auto;
+    width: clamp(30rem, 60rem, 50vw);
+    position: relative;
+    @media screen and (max-width: 620px) {
+        width: 100%;
+    }
+    input,
+    textarea {
+        width: 100%;
+        border-radius: 0.3rem;
+        font-size: clamp(1.8rem, 2.2rem, 3vw);
+        font-family: inherit;
+        letter-spacing: 0.1rem;
+        padding: 0.3rem 0.5rem;
+        resize: none;
+        background: var(--input-bg-clr);
+        color: var(--normal-font-clr);
+        &:focus,
+        &:focus-within {
+            background: var(--input-focus-bg-clr);
+        }
+    }
+
+    textarea {
+        height: 15rem;
+    }
+    button {
+        position: absolute;
+        bottom: 0.2rem;
+        right: 0.5rem;
+        height: clamp(3.8rem, 4.8rem, 4vw);
+        width: clamp(3.8rem, 4.8rem, 4vw);
+        border-radius: 50%;
+        font-size: clamp(3rem, 4rem, 4vw);
+        background: var(--primary-clr);
+        color: white;
+        &:hover {
+            transform: translateY(-0.3rem);
+            background: rgb(241, 239, 239);
+            color: var(--primary-clr);
+            box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+        }
+    }
+}
+.user-section {
+    width: 90vw;
+    margin: 0 auto 2rem auto;
+    max-width: 150rem;
+    text-align: center;
+    font-size: clamp(2rem, 3rem, 3vw);
+}
+.note-output-section {
+    // border: 1px solid red;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
+    grid-gap: 2rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    height: 80vh;
+    @media screen and (max-width: 620px) {
+        grid-template-columns: 1fr;
+    }
+    .note-list {
+        // border: 1px solid green;
+        height: clamp(15rem, 20rem, 20vw);
+        background: var(--note-list-bg-clr);
+        color: var(--normal-font-clr);
+        border-radius: 0.4rem;
+        position: relative;
+        &:hover,
+        &:focus,
+        &:focus-within {
+            box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            border-bottom: 1px solid white;
+            padding: 0.3rem 0.5rem;
+            text-align: center;
+            font-size: clamp(1.8rem, 2.2rem, 3vw);
+            font-weight: 100;
+            @media screen and (max-width: 620px) {
+                font-weight: bold;
+            }
+        }
+        p {
+            font-size: clamp(1.7rem, 2rem, 3vw);
+            padding: 0.3rem 0.5rem;
+            overflow: hidden;
+            height: 55%;
+        }
+        button {
+            position: absolute;
+            bottom: 0.3rem;
+            height: clamp(3rem, 3.5rem, 3vw);
+            width: clamp(3rem, 3.5rem, 3vw);
+            font-size: clamp(1.8rem, 2.2rem, 3vw);
+            border-radius: 50%;
+            color: var(--edit-btn-font-clr);
+            &:hover {
+                transform: translateY(-0.4rem);
+                box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+                background: white;
+            }
+        }
+        .edit-Note {
+            left: 0.3rem;
+            background: var(--edit-btn-bg-clr);
+            &:hover {
+                color: var(--edit-btn-hover-font-clr);
+            }
+        }
+        .delete-Note {
+            right: 0.3rem;
+            background: var(--delete-btn-bg-clr);
+            &:hover {
+                color: var(--delete-btn-hover-font-clr);
+            }
+        }
+    }
+}
+.editable-note {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.4);
+    z-index: 1;
+}
+.note-output-section-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+}
+.note-list-active {
+    display: none;
+}
+.p-active {
+    overflow: auto;
+}
+@keyframes create-active {
+    0% {
+        transform: translateY(-15rem);
+        opacity: 0;
+    }
+    40% {
+        transform: translateY(0);
+    }
+    60% {
+        transform: translateY(-2rem);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes delete-active {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(15rem) rotate(30deg);
+        opacity: 0;
+    }
+}
+@keyframes load-list {
+    from {
+        transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) translateZ(0);
+        opacity: 1;
+    }
+}
+

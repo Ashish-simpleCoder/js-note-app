@@ -129,6 +129,7 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
     grid-gap: 2rem;
     justify-content: center;
+    // align-items: center;
     margin-bottom: 4rem;
     height: 80vh;
     @media screen and (max-width: 620px) {
@@ -200,6 +201,13 @@ header {
     transform: translate(-50%, -50%) scale(1.4);
     z-index: 1;
 }
+.editable-note-mobile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 1;
+}
 .note-output-section-active {
     position: absolute;
     top: 0;
@@ -249,4 +257,3 @@ header {
         opacity: 1;
     }
 }
-

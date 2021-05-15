@@ -244,6 +244,15 @@ header h1 span {
   z-index: 1;
 }
 
+.editable-note-mobile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0.9);
+          transform: translate(-50%, -50%) scale(0.9);
+  z-index: 1;
+}
+
 .note-output-section-active {
   position: absolute;
   top: 0;
@@ -344,32 +353,6 @@ header h1 span {
   from {
     -webkit-transform: perspective(40rem) translateY(20rem) translateZ(20rem);
             transform: perspective(40rem) translateY(20rem) translateZ(20rem);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0) translateZ(0);
-            transform: translateY(0) translateZ(0);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes load-h1 {
-  from {
-    -webkit-transform: perspective(40rem) translateY(15rem) translateZ(20rem);
-            transform: perspective(40rem) translateY(15rem) translateZ(20rem);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: translateY(0) translateZ(0);
-            transform: translateY(0) translateZ(0);
-    opacity: 1;
-  }
-}
-
-@keyframes load-h1 {
-  from {
-    -webkit-transform: perspective(40rem) translateY(15rem) translateZ(20rem);
-            transform: perspective(40rem) translateY(15rem) translateZ(20rem);
     opacity: 0;
   }
   to {

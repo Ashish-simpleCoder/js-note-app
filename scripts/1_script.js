@@ -25,6 +25,7 @@ function generateNote() {
         title: input.value,
         content: textarea.value,
         isEdit: false,
+        id: new Date().getTime().toString(),
     };
 
     templateDataCaller(note_obj);
@@ -45,7 +46,7 @@ function mainTemplate(note_obj) {
     let note_list = document.createElement('div');
     note_list.classList.add('note-list');
     note_list.classList.add('show-note-list');
-    let htmlData = `<h2 contenteditable=false>${note_obj.title}</h2>
+    let htmlData = `<h2 contenteditable=false id=${note_obj.id}>${note_obj.title}</h2>
                     <p contenteditable=false>${note_obj.content}</p>
                     <button class='edit-Note'>EE</button>
                     <button class='delete-Note'>DD</button>`;
@@ -143,7 +144,10 @@ function deleteNote(e) {
 // -----------------function for adding and removing animation classes------------------------------
 function classListToggler(parent, output_section) {
     parent.classList.toggle('show-note-list');
-    parent.classList.toggle('editable-note');
+    if (window.innerWidth > 650) parent.classList.toggle('editable-note');
+    if (window.innerWidth < 651)
+        parent.classList.toggle('editable-note-mobile');
+
     output_section.classList.toggle('note-output-section-active');
 }
 // ----------------------------------------------------------------------------------------------
@@ -159,10 +163,11 @@ function editNote(new_user_notes, user_note_title) {
 }
 function saveEditTodo(new_user_notes, user_note_title, user_note_content) {
     let main_notes = new_user_notes.map((note) => {
-        if (
-            user_note_title.getAttribute('contenteditable') == 'true' &&
-            note.isEdit
-        ) {
+        // if (
+        //     user_note_title.getAttribute('contenteditable') == 'true' &&
+        //     note.isEdit
+        // ) {
+        if (note.id == user_note_title.id) {
             return {
                 ...note,
                 isEdit: false,

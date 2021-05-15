@@ -31,6 +31,7 @@ function generateNote() {
     UPDATE_LOCAL_STORAGE(note_obj);
     input.value = '';
     textarea.value = '';
+    updateListNumber();
 }
 function templateDataCaller(note_obj) {
     let note_list = mainTemplate(note_obj);
@@ -72,6 +73,8 @@ window.addEventListener('load', () => {
         let new_notes = mainTemplate(note);
         note_output_section.append(new_notes);
     });
+
+    updateListNumber();
 });
 
 // function for deleting the note
@@ -92,6 +95,7 @@ function deleteNote(e) {
             (note) => note.title != titles.innerHTML
         );
         localStorage.setItem('notes', JSON.stringify(fresh_notes));
+        updateListNumber();
     }
     if (item.classList[0] === 'edit-Note') {
         let user_note_title = parent.children[0];
@@ -174,4 +178,9 @@ function saveEditTodo(new_user_notes, user_note_title, user_note_content) {
 function changeContentEditable(isEdit, title, content) {
     title.setAttribute('contenteditable', !isEdit);
     content.setAttribute('contenteditable', !isEdit);
+}
+function updateListNumber() {
+    let notes_total = JSON.parse(localStorage.getItem('notes'));
+    let h2 = document.querySelector('.user-section');
+    h2.innerHTML = 'Your Notes ' + ' ' + '(' + notes_total.length + ')';
 }

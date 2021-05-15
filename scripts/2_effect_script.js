@@ -8,8 +8,9 @@ window.addEventListener('load', () => {
 
     let h1 = document.querySelector('header h1');
     h1.style.animation = `load-list 1s ease forwards`;
+
+    let h2 = document.querySelector('.user-section');
+    h2.style.animation = `load-list 1s ease forwards`;
     input.style.animation = `load-list 1s ease forwards`;
     // textarea.style.animation = `load-list 1s ease forwards`;
-
-    
 });

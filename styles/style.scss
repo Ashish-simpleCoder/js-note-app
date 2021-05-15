@@ -29,13 +29,13 @@ body {
 
     --primary-clr: rgb(255, 132, 167);
     --normal-font-clr: rgb(10, 10, 10);
-    --input-bg-clr: rgb(243, 241, 241);
+    --input-bg-clr: rgb(255, 255, 255);
     --input-focus-bg-clr: rgb(10, 172, 91);
 
     --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(255, 132, 167),
-        rgb(155, 155, 167)
+        rgb(248, 103, 144),
+        rgb(161, 189, 180)
     );
     // --note-list-bg-clr: linear-gradient(
     //     145deg,
@@ -255,11 +255,14 @@ header {
 }
 @keyframes load-list {
     from {
-        transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+        transform: perspective(20rem) translateY(20rem) translateZ(10rem) rotateX(20deg);
+        // transform: perspective(30rem) rotateX(45deg)
+        //     translate3d(30rem, 0rem, 20rem);
         opacity: 0;
     }
     to {
-        transform: translateY(0) translateZ(0);
+        // transform: translateY(0) translateZ(0);
+        transform: translateY(0) rotateX(0);
         opacity: 1;
     }
 }

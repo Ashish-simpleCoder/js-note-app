@@ -97,6 +97,13 @@ function deleteNote(e) {
         );
         localStorage.setItem('notes', JSON.stringify(fresh_notes));
         updateListNumber();
+
+        // --------------------removing the class after deletion if list is in editMode---------------------------
+        note_output_section.classList.remove('note-output-section-active');
+        let x = document.querySelectorAll('.show-note-list');
+        for (let i = 0; i < x.length; i++)
+            x[i].classList.remove('note-list-active');
+        // -------------------------------------------------------------------------------------------------
     }
     if (item.classList[0] === 'edit-Note') {
         let user_note_title = parent.children[0];

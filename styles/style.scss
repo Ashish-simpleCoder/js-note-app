@@ -153,7 +153,9 @@ header {
         &:focus-within {
             box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
         }
-
+        @media screen and (max-width: 650px) {
+            height: clamp(20rem,25rem,20vw);
+        }
         h2 {
             border-bottom: 1px solid white;
             padding: 0.3rem 0.5rem;
@@ -211,7 +213,7 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.95);
     z-index: 1;
 }
 .note-output-section-active {
@@ -255,7 +257,8 @@ header {
 }
 @keyframes load-list {
     from {
-        transform: perspective(20rem) translateY(20rem) translateZ(10rem) rotateX(20deg);
+        transform: perspective(20rem) translateY(20rem) translateZ(10rem)
+            rotateX(20deg);
         // transform: perspective(30rem) rotateX(45deg)
         //     translate3d(30rem, 0rem, 20rem);
         opacity: 0;

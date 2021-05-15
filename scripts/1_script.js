@@ -152,8 +152,9 @@ function deleteNote(e) {
 function classListToggler(parent, output_section) {
     parent.classList.toggle('show-note-list');
     if (window.innerWidth > 650) parent.classList.toggle('editable-note');
-    if (window.innerWidth < 651)
+    if (window.innerWidth < 651) {
         parent.classList.toggle('editable-note-mobile');
+    }
 
     output_section.classList.toggle('note-output-section-active');
 }

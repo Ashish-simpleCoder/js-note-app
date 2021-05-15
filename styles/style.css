@@ -29,23 +29,23 @@ body {
 :root {
   --body-bg-clr: linear-gradient(
         145deg,
-        rgb(101, 164, 236),
-        rgb(77, 235, 169)
+        rgb(238, 243, 248),
+        rgb(102, 250, 188)
     );
-  --primary-clr: rgb(194, 11, 11);
+  --primary-clr: rgb(255, 132, 167);
   --normal-font-clr: rgb(10, 10, 10);
   --input-bg-clr: rgb(243, 241, 241);
-  --input-focus-bg-clr: rgb(255, 130, 130);
+  --input-focus-bg-clr: rgb(10, 172, 91);
   --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(255, 83, 121),
-        rgb(31, 31, 230)
+        rgb(255, 132, 167),
+        rgb(155, 155, 167)
     );
   --edit-btn-font-clr: white;
   --edit-btn-bg-clr: green;
-  --delete-btn-bg-clr: rgb(165, 7, 7);
+  --delete-btn-bg-clr: rgb(189, 31, 39);
   --edit-btn-hover-font-clr: rgb(0, 163, 0);
-  --delete-btn-hover-font-clr: rgb(197, 4, 4);
+  --delete-btn-hover-font-clr: rgb(189, 27, 35);
 }
 
 button {
@@ -78,7 +78,7 @@ header h1 {
 }
 
 header h1 span {
-  color: #d30341;
+  color: #e74976;
 }
 
 .note-input-section {
@@ -104,6 +104,8 @@ header h1 span {
   resize: none;
   background: var(--input-bg-clr);
   color: var(--normal-font-clr);
+  -webkit-box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
 }
 
 .note-input-section input:focus, .note-input-section input:focus-within,
@@ -120,17 +122,17 @@ header h1 span {
   position: absolute;
   bottom: 0.2rem;
   right: 0.5rem;
-  height: clamp(3.8rem, 4.8rem, 4vw);
-  width: clamp(3.8rem, 4.8rem, 4vw);
+  height: clamp(3.8rem, 4.5rem, 4vw);
+  width: clamp(3.8rem, 4.5rem, 4vw);
   border-radius: 50%;
-  font-size: clamp(3rem, 4rem, 4vw);
-  background: var(--primary-clr);
+  font-size: clamp(3rem, 3.5rem, 4vw);
+  background: #d63024;
   color: white;
 }
 
 .note-input-section button:hover {
-  -webkit-transform: translateY(-0.3rem);
-          transform: translateY(-0.3rem);
+  -webkit-transform: translateY(-0.5rem);
+          transform: translateY(-0.5rem);
   background: #f1efef;
   color: var(--primary-clr);
   -webkit-box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);

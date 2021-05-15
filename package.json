@@ -1,0 +1,15 @@
+{
+    "name": "9_note_app",
+    "version": "1.0.0",
+    "description": "\"Javascript Note App\"",
+    "main": "index.js",
+    "scripts": {
+        "deploy": "gh-pages -d dist"
+    },
+    "author": "Ashish",
+    "license": "ISC",
+    "homepage": "https://github.com/Ashish-simpleCoder/js-note-app",
+    "dependencies": {
+        "gh-pages": "^3.1.0"
+    }
+}

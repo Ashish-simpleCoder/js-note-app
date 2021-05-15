@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Better Note App(by Ashish)</title>
+        <link rel="stylesheet" href="./styles/style.css" />
+        <script src="./scripts/1_script.js" defer></script>
+        <script src="./scripts/2_effect_script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1><span>Better</span> Note App</h1>
+        </header>
+        <main>
+            <section class="note-input-section">
+                <label for="input">title</label>
+                <input type="text" id="input" placeholder="title..." />
+                <label for="textarea">content</label>
+                <textarea
+                    id="textarea"
+                    placeholder="type anything"
+                    style="display: none"
+                ></textarea>
+                <button type="submit" id="create-Note" style="display: none">
+                    +
+                </button>
+            </section>
+
+            <h2 class="user-section">Your Notes</h2>
+            <section class="note-output-section"></section>
+        </main>
+    </body>
+</html>

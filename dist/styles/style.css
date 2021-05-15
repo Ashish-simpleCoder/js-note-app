@@ -1,0 +1,381 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  outline: none;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+label {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+body {
+  background: var(--body-bg-clr);
+  min-height: 100vh;
+  position: relative;
+}
+
+:root {
+  --body-bg-clr: linear-gradient(
+        145deg,
+        rgb(101, 164, 236),
+        rgb(77, 235, 169)
+    );
+  --primary-clr: rgb(194, 11, 11);
+  --normal-font-clr: rgb(10, 10, 10);
+  --input-bg-clr: rgb(243, 241, 241);
+  --input-focus-bg-clr: rgb(255, 130, 130);
+  --note-list-bg-clr: linear-gradient(
+        145deg,
+        rgb(255, 83, 121),
+        rgb(31, 31, 230)
+    );
+  --edit-btn-font-clr: white;
+  --edit-btn-bg-clr: green;
+  --delete-btn-bg-clr: rgb(165, 7, 7);
+  --edit-btn-hover-font-clr: rgb(0, 163, 0);
+  --delete-btn-hover-font-clr: rgb(197, 4, 4);
+}
+
+button {
+  cursor: pointer;
+}
+
+main {
+  width: clamp(90vw, 150rem, 90vw);
+  max-width: 150rem;
+  margin: 0 auto;
+}
+
+header {
+  width: 90vw;
+  max-width: 150rem;
+  margin: 0 auto;
+  border-bottom: 1px solid #001b06;
+}
+
+header h1 {
+  font-size: clamp(2rem, 2.8rem, 3vw);
+  font-weight: 100;
+  margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 620px) {
+  header h1 {
+    font-weight: bold;
+  }
+}
+
+header h1 span {
+  color: #d30341;
+}
+
+.note-input-section {
+  margin: 3rem auto;
+  width: clamp(30rem, 60rem, 50vw);
+  position: relative;
+}
+
+@media screen and (max-width: 620px) {
+  .note-input-section {
+    width: 100%;
+  }
+}
+
+.note-input-section input,
+.note-input-section textarea {
+  width: 100%;
+  border-radius: 0.3rem;
+  font-size: clamp(1.8rem, 2.2rem, 3vw);
+  font-family: inherit;
+  letter-spacing: 0.1rem;
+  padding: 0.3rem 0.5rem;
+  resize: none;
+  background: var(--input-bg-clr);
+  color: var(--normal-font-clr);
+}
+
+.note-input-section input:focus, .note-input-section input:focus-within,
+.note-input-section textarea:focus,
+.note-input-section textarea:focus-within {
+  background: var(--input-focus-bg-clr);
+}
+
+.note-input-section textarea {
+  height: 15rem;
+}
+
+.note-input-section button {
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.5rem;
+  height: clamp(3.8rem, 4.8rem, 4vw);
+  width: clamp(3.8rem, 4.8rem, 4vw);
+  border-radius: 50%;
+  font-size: clamp(3rem, 4rem, 4vw);
+  background: var(--primary-clr);
+  color: white;
+}
+
+.note-input-section button:hover {
+  -webkit-transform: translateY(-0.3rem);
+          transform: translateY(-0.3rem);
+  background: #f1efef;
+  color: var(--primary-clr);
+  -webkit-box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+}
+
+.user-section {
+  width: 90vw;
+  margin: 0 auto 2rem auto;
+  max-width: 150rem;
+  text-align: center;
+  font-size: clamp(2rem, 3rem, 3vw);
+}
+
+.note-output-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(30rem, 35rem))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
+  grid-gap: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 4rem;
+  height: 80vh;
+}
+
+@media screen and (max-width: 620px) {
+  .note-output-section {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+.note-output-section .note-list {
+  height: clamp(15rem, 20rem, 20vw);
+  background: var(--note-list-bg-clr);
+  color: var(--normal-font-clr);
+  border-radius: 0.4rem;
+  position: relative;
+}
+
+.note-output-section .note-list:hover, .note-output-section .note-list:focus, .note-output-section .note-list:focus-within {
+  -webkit-box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+          box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.note-output-section .note-list h2 {
+  border-bottom: 1px solid white;
+  padding: 0.3rem 0.5rem;
+  text-align: center;
+  font-size: clamp(1.8rem, 2.2rem, 3vw);
+  font-weight: 100;
+}
+
+@media screen and (max-width: 620px) {
+  .note-output-section .note-list h2 {
+    font-weight: bold;
+  }
+}
+
+.note-output-section .note-list p {
+  font-size: clamp(1.7rem, 2rem, 3vw);
+  padding: 0.3rem 0.5rem;
+  overflow: hidden;
+  height: 55%;
+}
+
+.note-output-section .note-list button {
+  position: absolute;
+  bottom: 0.3rem;
+  height: clamp(3rem, 3.5rem, 3vw);
+  width: clamp(3rem, 3.5rem, 3vw);
+  font-size: clamp(1.8rem, 2.2rem, 3vw);
+  border-radius: 50%;
+  color: var(--edit-btn-font-clr);
+}
+
+.note-output-section .note-list button:hover {
+  -webkit-transform: translateY(-0.4rem);
+          transform: translateY(-0.4rem);
+  -webkit-box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  background: white;
+}
+
+.note-output-section .note-list .edit-Note {
+  left: 0.3rem;
+  background: var(--edit-btn-bg-clr);
+}
+
+.note-output-section .note-list .edit-Note:hover {
+  color: var(--edit-btn-hover-font-clr);
+}
+
+.note-output-section .note-list .delete-Note {
+  right: 0.3rem;
+  background: var(--delete-btn-bg-clr);
+}
+
+.note-output-section .note-list .delete-Note:hover {
+  color: var(--delete-btn-hover-font-clr);
+}
+
+.editable-note {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1.4);
+          transform: translate(-50%, -50%) scale(1.4);
+  z-index: 1;
+}
+
+.note-output-section-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.note-list-active {
+  display: none;
+}
+
+.p-active {
+  overflow: auto;
+}
+
+@-webkit-keyframes create-active {
+  0% {
+    -webkit-transform: translateY(-15rem);
+            transform: translateY(-15rem);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  60% {
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes create-active {
+  0% {
+    -webkit-transform: translateY(-15rem);
+            transform: translateY(-15rem);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  60% {
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes delete-active {
+  from {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(15rem) rotate(30deg);
+            transform: translateY(15rem) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes delete-active {
+  from {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(15rem) rotate(30deg);
+            transform: translateY(15rem) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes load-list {
+  from {
+    -webkit-transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+            transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0);
+            transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes load-list {
+  from {
+    -webkit-transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+            transform: perspective(40rem) translateY(20rem) translateZ(20rem);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0);
+            transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes load-h1 {
+  from {
+    -webkit-transform: perspective(40rem) translateY(15rem) translateZ(20rem);
+            transform: perspective(40rem) translateY(15rem) translateZ(20rem);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0);
+            transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes load-h1 {
+  from {
+    -webkit-transform: perspective(40rem) translateY(15rem) translateZ(20rem);
+            transform: perspective(40rem) translateY(15rem) translateZ(20rem);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0);
+            transform: translateY(0) translateZ(0);
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=style.css.map */

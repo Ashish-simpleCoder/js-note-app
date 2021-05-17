@@ -48,8 +48,8 @@ body {
   --input-focus-bg-clr: rgb(238, 238, 238);
   --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(98, 250, 179),
-        rgb(255, 170, 113)
+        rgb(255, 170, 113),
+        rgb(98, 250, 179)
     );
   --edit-btn-font-clr: green;
   --delete-btn-font-clr: rgb(172, 50, 2);

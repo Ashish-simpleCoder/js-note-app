@@ -40,16 +40,16 @@ body {
   --body-bg-clr: linear-gradient(
         145deg,
         rgb(238, 243, 248),
-        rgb(128, 255, 202)
+        rgb(132, 247, 199)
     );
   --primary-clr: rgb(10, 162, 91);
   --normal-font-clr: rgb(10, 10, 10);
   --input-bg-clr: rgb(255, 255, 255);
-  --input-focus-bg-clr: rgb(10, 172, 91);
+  --input-focus-bg-clr: rgb(238, 238, 238);
   --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(243, 153, 93),
-        rgb(50, 235, 149)
+        rgb(98, 250, 179),
+        rgb(255, 170, 113)
     );
   --edit-btn-font-clr: green;
   --delete-btn-font-clr: rgb(172, 50, 2);
@@ -198,6 +198,8 @@ header h1 span {
   color: var(--normal-font-clr);
   border-radius: 0.4rem;
   position: relative;
+  -webkit-box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
 }
 
 .note-output-section .note-list:hover, .note-output-section .note-list:focus, .note-output-section .note-list:focus-within {
@@ -212,7 +214,7 @@ header h1 span {
 }
 
 .note-output-section .note-list h2 {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #da7430;
   padding: 0.3rem 0.5rem;
   text-align: center;
   font-size: clamp(1.8rem, 2.2rem, 3vw);

@@ -17,34 +17,44 @@ html {
 }
 body {
     background: var(--body-bg-clr);
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
+}
+
+::selection {
+    background: rgb(2, 24, 148);
+    color: rgb(255, 255, 255);
 }
 :root {
     --body-bg-clr: linear-gradient(
         145deg,
         rgb(238, 243, 248),
-        rgb(102, 250, 188)
+        rgb(128, 255, 202)
     );
+    // rgb(231, 247, 240)
 
-    --primary-clr: rgb(255, 132, 167);
+    --primary-clr: rgb(10, 162, 91);
     --normal-font-clr: rgb(10, 10, 10);
     --input-bg-clr: rgb(255, 255, 255);
     --input-focus-bg-clr: rgb(10, 172, 91);
 
     --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(248, 103, 144),
-        rgb(161, 189, 180)
+        rgb(243, 153, 93),
+        rgb(50, 235, 149)
     );
+    // rgb(248, 103, 144),
     // --note-list-bg-clr: linear-gradient(
     //     145deg,
     //     rgb(255, 83, 121),
     //     rgb(31, 31, 230)
     // );
-    --edit-btn-font-clr: white;
-    --edit-btn-bg-clr: green;
-    --delete-btn-bg-clr: rgb(189, 31, 39);
+    --edit-btn-font-clr: green;
+    --delete-btn-font-clr: rgb(172, 50, 2);
+    // --edit-btn-bg-clr: green;
+    // --delete-btn-bg-clr: rgb(189, 31, 39);
+    --edit-btn-bg-clr: none;
+    --delete-btn-bg-clr: none;
 
     --edit-btn-hover-font-clr: rgb(0, 163, 0);
     --delete-btn-hover-font-clr: rgb(189, 27, 35);
@@ -53,7 +63,8 @@ button {
     cursor: pointer;
 }
 main {
-    width: clamp(90vw, 150rem, 90vw);
+    // width: clamp(90vw, 150rem, 90vw);
+    width: 90vw; //temp fix
     max-width: 150rem;
     margin: 0 auto;
     // border: 1px solid red;
@@ -62,7 +73,8 @@ header {
     width: 90vw;
     max-width: 150rem;
     margin: 0 auto;
-    border-bottom: 1px solid rgb(0, 27, 6);
+    // border-bottom: 1px solid rgb(0, 27, 6);
+    border-bottom: 1px solid rgb(190, 95, 6);
     h1 {
         font-size: clamp(2rem, 2.8rem, 3vw);
         font-weight: 100;
@@ -80,7 +92,7 @@ header {
     margin: 3rem auto;
     width: clamp(30rem, 60rem, 50vw);
     position: relative;
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 650px) {
         width: 100%;
     }
     input,
@@ -112,22 +124,37 @@ header {
         width: clamp(3.8rem, 4.5rem, 4vw);
         border-radius: 50%;
         font-size: clamp(3rem, 3.5rem, 4vw);
-        background: rgb(214, 48, 36);
-        color: white;
+        // background: rgb(214, 48, 36);
+        background: rgb(206, 248, 234);
+        color: var(--primary-clr);
         &:hover {
+            // background:rgb(10, 172, 91);
             transform: translateY(-0.5rem);
-            background: rgb(241, 239, 239);
             color: var(--primary-clr);
             box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+            background: white;
         }
     }
 }
 .user-section {
     width: 90vw;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 3rem auto;
     max-width: 150rem;
     text-align: center;
     font-size: clamp(2rem, 3rem, 3vw);
+    font-weight: normal;
+    position:relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 12%;
+        height: 2px;
+        background: rgb(190, 95, 6);
+        left: 50%;
+        bottom: -0.7rem;
+        transform: translateX(-50%);
+    }
 }
 .note-output-section {
     // border: 1px solid red;
@@ -137,7 +164,8 @@ header {
     justify-content: center;
     // align-items: center;
     margin-bottom: 4rem;
-    height: 80vh;
+    min-height: 62vh;
+    // height: 80vh;
     @media screen and (max-width: 620px) {
         grid-template-columns: 1fr;
     }
@@ -154,14 +182,15 @@ header {
             box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
         }
         @media screen and (max-width: 650px) {
-            height: clamp(20rem,25rem,20vw);
+            height: clamp(20rem, 25rem, 20vw);
         }
         h2 {
             border-bottom: 1px solid white;
             padding: 0.3rem 0.5rem;
             text-align: center;
             font-size: clamp(1.8rem, 2.2rem, 3vw);
-            font-weight: 100;
+            font-weight: bold;
+            font-style: italic;
             @media screen and (max-width: 620px) {
                 font-weight: bold;
             }
@@ -180,12 +209,14 @@ header {
             font-size: clamp(1.8rem, 2.2rem, 3vw);
             border-radius: 50%;
             color: var(--edit-btn-font-clr);
+
             &:hover {
-                transform: translateY(-0.4rem);
+                transform: translateY(-0.8rem);
                 box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
                 background: white;
             }
         }
+
         .edit-Note {
             left: 0.3rem;
             background: var(--edit-btn-bg-clr);
@@ -196,6 +227,7 @@ header {
         .delete-Note {
             right: 0.3rem;
             background: var(--delete-btn-bg-clr);
+            color: var(--delete-btn-font-clr);
             &:hover {
                 color: var(--delete-btn-hover-font-clr);
             }
@@ -251,7 +283,7 @@ header {
         transform: translateY(0);
     }
     to {
-        transform: translateY(15rem) rotate(30deg);
+        transform: translateY(20rem) rotate(30deg);
         opacity: 0;
     }
 }

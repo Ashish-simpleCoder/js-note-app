@@ -48,8 +48,8 @@ function mainTemplate(note_obj) {
     note_list.classList.add('show-note-list');
     let htmlData = `<h2 contenteditable=false id=${note_obj.id}>${note_obj.title}</h2>
                     <p contenteditable=false>${note_obj.content}</p>
-                    <button class='edit-Note'>EE</button>
-                    <button class='delete-Note'>DD</button>`;
+                    <button class='edit-Note far fa-edit'></button>
+                    <button class='delete-Note far fa-trash-alt'></button>`;
     note_list.innerHTML = htmlData;
 
     return note_list;
@@ -86,6 +86,7 @@ function deleteNote(e) {
 
     if (item.classList[0] === 'delete-Note') {
         let titles = parent.children[0];
+     
 
         // animation on deleting the notes
         parent.style.animation = `delete-active 0.5s ease forwards`;
@@ -106,6 +107,7 @@ function deleteNote(e) {
         // -------------------------------------------------------------------------------------------------
     }
     if (item.classList[0] === 'edit-Note') {
+        console.log('ok')
         let user_note_title = parent.children[0];
         let user_note_content = parent.children[1];
         let new_user_notes = GET_LOCAL_STORAGE();
@@ -192,6 +194,8 @@ function changeContentEditable(isEdit, title, content) {
     title.setAttribute('contenteditable', !isEdit);
     content.setAttribute('contenteditable', !isEdit);
 }
+
+// total notes updater 
 function updateListNumber() {
     let notes_total = JSON.parse(localStorage.getItem('notes'));
     let h2 = document.querySelector('.user-section');

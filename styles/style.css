@@ -22,28 +22,39 @@ html {
 
 body {
   background: var(--body-bg-clr);
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+}
+
+::-moz-selection {
+  background: #021894;
+  color: white;
+}
+
+::selection {
+  background: #021894;
+  color: white;
 }
 
 :root {
   --body-bg-clr: linear-gradient(
         145deg,
         rgb(238, 243, 248),
-        rgb(102, 250, 188)
+        rgb(128, 255, 202)
     );
-  --primary-clr: rgb(255, 132, 167);
+  --primary-clr: rgb(10, 162, 91);
   --normal-font-clr: rgb(10, 10, 10);
   --input-bg-clr: rgb(255, 255, 255);
   --input-focus-bg-clr: rgb(10, 172, 91);
   --note-list-bg-clr: linear-gradient(
         145deg,
-        rgb(248, 103, 144),
-        rgb(161, 189, 180)
+        rgb(243, 153, 93),
+        rgb(50, 235, 149)
     );
-  --edit-btn-font-clr: white;
-  --edit-btn-bg-clr: green;
-  --delete-btn-bg-clr: rgb(189, 31, 39);
+  --edit-btn-font-clr: green;
+  --delete-btn-font-clr: rgb(172, 50, 2);
+  --edit-btn-bg-clr: none;
+  --delete-btn-bg-clr: none;
   --edit-btn-hover-font-clr: rgb(0, 163, 0);
   --delete-btn-hover-font-clr: rgb(189, 27, 35);
 }
@@ -53,7 +64,7 @@ button {
 }
 
 main {
-  width: clamp(90vw, 150rem, 90vw);
+  width: 90vw;
   max-width: 150rem;
   margin: 0 auto;
 }
@@ -62,7 +73,7 @@ header {
   width: 90vw;
   max-width: 150rem;
   margin: 0 auto;
-  border-bottom: 1px solid #001b06;
+  border-bottom: 1px solid #be5f06;
 }
 
 header h1 {
@@ -87,7 +98,7 @@ header h1 span {
   position: relative;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 650px) {
   .note-input-section {
     width: 100%;
   }
@@ -126,25 +137,39 @@ header h1 span {
   width: clamp(3.8rem, 4.5rem, 4vw);
   border-radius: 50%;
   font-size: clamp(3rem, 3.5rem, 4vw);
-  background: #d63024;
-  color: white;
+  background: #cef8ea;
+  color: var(--primary-clr);
 }
 
 .note-input-section button:hover {
   -webkit-transform: translateY(-0.5rem);
           transform: translateY(-0.5rem);
-  background: #f1efef;
   color: var(--primary-clr);
   -webkit-box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
           box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+  background: white;
 }
 
 .user-section {
   width: 90vw;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 3rem auto;
   max-width: 150rem;
   text-align: center;
   font-size: clamp(2rem, 3rem, 3vw);
+  font-weight: normal;
+  position: relative;
+}
+
+.user-section:before {
+  content: '';
+  position: absolute;
+  width: 12%;
+  height: 2px;
+  background: #be5f06;
+  left: 50%;
+  bottom: -0.7rem;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .note-output-section {
@@ -157,7 +182,7 @@ header h1 span {
       -ms-flex-pack: center;
           justify-content: center;
   margin-bottom: 4rem;
-  height: 80vh;
+  min-height: 62vh;
 }
 
 @media screen and (max-width: 620px) {
@@ -191,7 +216,8 @@ header h1 span {
   padding: 0.3rem 0.5rem;
   text-align: center;
   font-size: clamp(1.8rem, 2.2rem, 3vw);
-  font-weight: 100;
+  font-weight: bold;
+  font-style: italic;
 }
 
 @media screen and (max-width: 620px) {
@@ -218,8 +244,8 @@ header h1 span {
 }
 
 .note-output-section .note-list button:hover {
-  -webkit-transform: translateY(-0.4rem);
-          transform: translateY(-0.4rem);
+  -webkit-transform: translateY(-0.8rem);
+          transform: translateY(-0.8rem);
   -webkit-box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
           box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
   background: white;
@@ -237,6 +263,7 @@ header h1 span {
 .note-output-section .note-list .delete-Note {
   right: 0.3rem;
   background: var(--delete-btn-bg-clr);
+  color: var(--delete-btn-font-clr);
 }
 
 .note-output-section .note-list .delete-Note:hover {
@@ -326,8 +353,8 @@ header h1 span {
             transform: translateY(0);
   }
   to {
-    -webkit-transform: translateY(15rem) rotate(30deg);
-            transform: translateY(15rem) rotate(30deg);
+    -webkit-transform: translateY(20rem) rotate(30deg);
+            transform: translateY(20rem) rotate(30deg);
     opacity: 0;
   }
 }
@@ -338,8 +365,8 @@ header h1 span {
             transform: translateY(0);
   }
   to {
-    -webkit-transform: translateY(15rem) rotate(30deg);
-            transform: translateY(15rem) rotate(30deg);
+    -webkit-transform: translateY(20rem) rotate(30deg);
+            transform: translateY(20rem) rotate(30deg);
     opacity: 0;
   }
 }

@@ -39,7 +39,7 @@ body {
 }
 
 .light {
-  --body-bg-clr: rgb(188, 217, 255);
+  --body-bg-clr: rgb(240, 255, 249);
   --header-bottom-border-clr: rgb(0, 163, 0);
   --primary-clr: rgb(3, 134, 73);
   --normal-font-clr: rgb(10, 10, 10);
@@ -47,7 +47,7 @@ body {
   --input-bg-clr: rgb(255, 255, 255);
   --placeholder-clr: rgb(22, 22, 22);
   --input-focus-bg-clr: rgb(238, 238, 238);
-  --note-list-bg-clr: rgb(234, 253, 234);
+  --note-list-bg-clr: rgb(255, 255, 255);
   --edit-btn-font-clr: green;
   --delete-btn-font-clr: rgb(172, 50, 2);
   --edit-btn-bg-clr: none;

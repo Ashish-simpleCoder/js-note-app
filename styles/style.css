@@ -332,6 +332,7 @@ header button {
     -webkit-transform: translateY(0) rotateX(35deg);
             transform: translateY(0) rotateX(35deg);
     opacity: 1;
+    background: #50e7e7;
   }
   60% {
     -webkit-transform: translateY(-2rem);
@@ -354,6 +355,7 @@ header button {
     -webkit-transform: translateY(0) rotateX(35deg);
             transform: translateY(0) rotateX(35deg);
     opacity: 1;
+    background: #50e7e7;
   }
   60% {
     -webkit-transform: translateY(-2rem);

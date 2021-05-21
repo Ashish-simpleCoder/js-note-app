@@ -7,6 +7,7 @@ const textarea = document.querySelector('textarea');
 let isEdit = false;
 let isEdit2 = true;
 
+const editor_view = document.querySelector('.editor-view');
 input.addEventListener('click', () => {
     textarea.style.display = '';
     create_NoteBtn.style.display = '';
@@ -68,7 +69,7 @@ function UPDATE_LOCAL_STORAGE(note_obj) {
 
 // event for loading back our notes from local storage
 window.addEventListener('load', () => {
-    input.focus(); //focusing on input when page loads
+    //input.focus(); //focusing on input when page loads
     let new_notes = GET_LOCAL_STORAGE();
     new_notes.forEach((note) => {
         let new_notes = mainTemplate(note);
@@ -86,8 +87,6 @@ function deleteNote(e) {
 
     if (item.classList[0] === 'delete-Note') {
         let titles = parent.children[0];
-     
-
         // animation on deleting the notes
         parent.style.animation = `delete-active 0.5s ease forwards`;
         parent.addEventListener('animationend', () => parent.remove());
@@ -101,66 +100,65 @@ function deleteNote(e) {
 
         // --------------------removing the class after deletion if list is in editMode---------------------------
         note_output_section.classList.remove('note-output-section-active');
+        let child_of_note_output_section = note_output_section.children;
+        console.log(child_of_note_output_section);
+        
         let x = document.querySelectorAll('.show-note-list');
         for (let i = 0; i < x.length; i++)
             x[i].classList.remove('note-list-active');
         // -------------------------------------------------------------------------------------------------
     }
     if (item.classList[0] === 'edit-Note') {
-        console.log('ok')
         let user_note_title = parent.children[0];
         let user_note_content = parent.children[1];
         let new_user_notes = GET_LOCAL_STORAGE();
 
         if (user_note_title.getAttribute('contenteditable') == 'false') {
             changeContentEditable(isEdit, user_note_title, user_note_content);
-
-            // -------------------------------adding classes--------------------------------------
-            // parent.classList.remove('show-note-list');
-            // parent.classList.add('editable-note');
-            // note_output_section.classList.add('note-output-section-active');
-            classListToggler(parent, note_output_section);
-            parent.style.animation = '';
-
-            let list_el = document.querySelectorAll('.note-list');
-            for (let i = 0; i < list_el.length; i++)
-                list_el[i].style.animation = '';
-
-            user_note_content.style.overflow = 'auto';
-
-            let x = document.querySelectorAll('.show-note-list');
-            for (let i = 0; i < x.length; i++) {
-                x[i].classList.add('note-list-active');
-            }
-            // -------------------------------------------------------------------------
             editNote(new_user_notes, user_note_title);
+
+            if (window.innerWidth > 650) {
+                parent.style.animation = '';
+                parent.classList.add('toggle-edit');
+            } else {
+                parent.classList.add('toggle-edit-mobile');
+            }
         } else {
-            // ----------------------------------removing classes-------------------------
-            classListToggler(parent, note_output_section);
-            user_note_content.style.overflow = 'hidden';
-
-            let x = document.querySelectorAll('.show-note-list');
-            for (let i = 0; i < x.length; i++)
-                x[i].classList.remove('note-list-active');
-            // -------------------------------------------------------------------------
-
+            parent.classList.remove('toggle-edit');
             saveEditTodo(new_user_notes, user_note_title, user_note_content);
             changeContentEditable(isEdit2, user_note_title, user_note_content);
+
+            if (window.innerWidth > 650) {
+                parent.classList.remove('toggle-edit');
+            } else {
+                parent.classList.remove('toggle-edit-mobile');
+            }
         }
     }
 }
 
-// -----------------function for adding and removing animation classes------------------------------
-function classListToggler(parent, output_section) {
-    parent.classList.toggle('show-note-list');
-    if (window.innerWidth > 650) parent.classList.toggle('editable-note');
-    if (window.innerWidth < 651) {
-        parent.classList.toggle('editable-note-mobile');
-    }
+// editor_view.addEventListener('click', (e) => {
+//     let item = e.target;
+//     if (item.classList[0] === 'save-todo') {
+//         let h2 = editor_view.querySelector('h2');
+//         let p = editor_view.querySelector('p');
 
-    output_section.classList.toggle('note-output-section-active');
-}
-// ----------------------------------------------------------------------------------------------
+//         let notes = JSON.parse(localStorage.getItem('notes'));
+//         let new_notes = notes.map((note) => {
+//             if (note.id == h2.id) {
+//                 return {
+//                     ...note,
+//                     title: h2.textContent,
+//                     content: p.textContent,
+//                 };
+//             } else return note;
+//         });
+//         notes = new_notes;
+//         localStorage.setItem('notes', JSON.stringify(notes));
+//         editor_view.classList.remove('editor-view-active');
+//     }
+// });
+
 function editNote(new_user_notes, user_note_title) {
     let main_notes = new_user_notes.map((note) => {
         if (note.title === user_note_title.innerHTML) {
@@ -173,10 +171,6 @@ function editNote(new_user_notes, user_note_title) {
 }
 function saveEditTodo(new_user_notes, user_note_title, user_note_content) {
     let main_notes = new_user_notes.map((note) => {
-        // if (
-        //     user_note_title.getAttribute('contenteditable') == 'true' &&
-        //     note.isEdit
-        // ) {
         if (note.id == user_note_title.id) {
             return {
                 ...note,
@@ -195,7 +189,7 @@ function changeContentEditable(isEdit, title, content) {
     content.setAttribute('contenteditable', !isEdit);
 }
 
-// total notes updater 
+// total notes updater
 function updateListNumber() {
     let notes_total = JSON.parse(localStorage.getItem('notes'));
     let h2 = document.querySelector('.user-section');

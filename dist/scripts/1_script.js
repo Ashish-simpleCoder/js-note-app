@@ -7,6 +7,7 @@ const textarea = document.querySelector('textarea');
 let isEdit = false;
 let isEdit2 = true;
 
+const editor_view = document.querySelector('.editor-view');
 input.addEventListener('click', () => {
     textarea.style.display = '';
     create_NoteBtn.style.display = '';
@@ -25,12 +26,14 @@ function generateNote() {
         title: input.value,
         content: textarea.value,
         isEdit: false,
+        id: new Date().getTime().toString(),
     };
 
     templateDataCaller(note_obj);
     UPDATE_LOCAL_STORAGE(note_obj);
     input.value = '';
     textarea.value = '';
+    updateListNumber();
 }
 function templateDataCaller(note_obj) {
     let note_list = mainTemplate(note_obj);
@@ -44,10 +47,10 @@ function mainTemplate(note_obj) {
     let note_list = document.createElement('div');
     note_list.classList.add('note-list');
     note_list.classList.add('show-note-list');
-    let htmlData = `<h2 contenteditable=false>${note_obj.title}</h2>
+    let htmlData = `<h2 contenteditable=false id=${note_obj.id}>${note_obj.title}</h2>
                     <p contenteditable=false>${note_obj.content}</p>
-                    <button class='edit-Note'>EE</button>
-                    <button class='delete-Note'>DD</button>`;
+                    <button class='edit-Note far fa-edit'></button>
+                    <button class='delete-Note far fa-trash-alt'></button>`;
     note_list.innerHTML = htmlData;
 
     return note_list;
@@ -66,12 +69,14 @@ function UPDATE_LOCAL_STORAGE(note_obj) {
 
 // event for loading back our notes from local storage
 window.addEventListener('load', () => {
-    input.focus(); //focusing on input when page loads
+    //input.focus(); //focusing on input when page loads
     let new_notes = GET_LOCAL_STORAGE();
     new_notes.forEach((note) => {
         let new_notes = mainTemplate(note);
         note_output_section.append(new_notes);
     });
+
+    updateListNumber();
 });
 
 // function for deleting the note
@@ -82,7 +87,6 @@ function deleteNote(e) {
 
     if (item.classList[0] === 'delete-Note') {
         let titles = parent.children[0];
-
         // animation on deleting the notes
         parent.style.animation = `delete-active 0.5s ease forwards`;
         parent.addEventListener('animationend', () => parent.remove());
@@ -92,6 +96,17 @@ function deleteNote(e) {
             (note) => note.title != titles.innerHTML
         );
         localStorage.setItem('notes', JSON.stringify(fresh_notes));
+        updateListNumber();
+
+        // --------------------removing the class after deletion if list is in editMode---------------------------
+        note_output_section.classList.remove('note-output-section-active');
+        let child_of_note_output_section = note_output_section.children;
+        console.log(child_of_note_output_section);
+        
+        let x = document.querySelectorAll('.show-note-list');
+        for (let i = 0; i < x.length; i++)
+            x[i].classList.remove('note-list-active');
+        // -------------------------------------------------------------------------------------------------
     }
     if (item.classList[0] === 'edit-Note') {
         let user_note_title = parent.children[0];
@@ -100,49 +115,50 @@ function deleteNote(e) {
 
         if (user_note_title.getAttribute('contenteditable') == 'false') {
             changeContentEditable(isEdit, user_note_title, user_note_content);
-
-            // -------------------------------adding classes--------------------------------------
-            // parent.classList.remove('show-note-list');
-            // parent.classList.add('editable-note');
-            // note_output_section.classList.add('note-output-section-active');
-            classListToggler(parent, note_output_section);
-            parent.style.animation = '';
-
-            let list_el = document.querySelectorAll('.note-list');
-            for (let i = 0; i < list_el.length; i++)
-                list_el[i].style.animation = '';
-
-            user_note_content.style.overflow = 'auto';
-
-            let x = document.querySelectorAll('.show-note-list');
-            for (let i = 0; i < x.length; i++) {
-                x[i].classList.add('note-list-active');
-            }
-            // -------------------------------------------------------------------------
             editNote(new_user_notes, user_note_title);
+
+            if (window.innerWidth > 650) {
+                parent.style.animation = '';
+                parent.classList.add('toggle-edit');
+            } else {
+                parent.classList.add('toggle-edit-mobile');
+            }
         } else {
-            // ----------------------------------removing classes-------------------------
-            classListToggler(parent, note_output_section);
-            user_note_content.style.overflow = 'hidden';
-
-            let x = document.querySelectorAll('.show-note-list');
-            for (let i = 0; i < x.length; i++)
-                x[i].classList.remove('note-list-active');
-            // -------------------------------------------------------------------------
-
+            parent.classList.remove('toggle-edit');
             saveEditTodo(new_user_notes, user_note_title, user_note_content);
             changeContentEditable(isEdit2, user_note_title, user_note_content);
+
+            if (window.innerWidth > 650) {
+                parent.classList.remove('toggle-edit');
+            } else {
+                parent.classList.remove('toggle-edit-mobile');
+            }
         }
     }
 }
 
-// -----------------function for adding and removing animation classes------------------------------
-function classListToggler(parent, output_section) {
-    parent.classList.toggle('show-note-list');
-    parent.classList.toggle('editable-note');
-    output_section.classList.toggle('note-output-section-active');
-}
-// ----------------------------------------------------------------------------------------------
+// editor_view.addEventListener('click', (e) => {
+//     let item = e.target;
+//     if (item.classList[0] === 'save-todo') {
+//         let h2 = editor_view.querySelector('h2');
+//         let p = editor_view.querySelector('p');
+
+//         let notes = JSON.parse(localStorage.getItem('notes'));
+//         let new_notes = notes.map((note) => {
+//             if (note.id == h2.id) {
+//                 return {
+//                     ...note,
+//                     title: h2.textContent,
+//                     content: p.textContent,
+//                 };
+//             } else return note;
+//         });
+//         notes = new_notes;
+//         localStorage.setItem('notes', JSON.stringify(notes));
+//         editor_view.classList.remove('editor-view-active');
+//     }
+// });
+
 function editNote(new_user_notes, user_note_title) {
     let main_notes = new_user_notes.map((note) => {
         if (note.title === user_note_title.innerHTML) {
@@ -155,10 +171,7 @@ function editNote(new_user_notes, user_note_title) {
 }
 function saveEditTodo(new_user_notes, user_note_title, user_note_content) {
     let main_notes = new_user_notes.map((note) => {
-        if (
-            user_note_title.getAttribute('contenteditable') == 'true' &&
-            note.isEdit
-        ) {
+        if (note.id == user_note_title.id) {
             return {
                 ...note,
                 isEdit: false,
@@ -174,4 +187,11 @@ function saveEditTodo(new_user_notes, user_note_title, user_note_content) {
 function changeContentEditable(isEdit, title, content) {
     title.setAttribute('contenteditable', !isEdit);
     content.setAttribute('contenteditable', !isEdit);
+}
+
+// total notes updater
+function updateListNumber() {
+    let notes_total = JSON.parse(localStorage.getItem('notes'));
+    let h2 = document.querySelector('.user-section');
+    h2.innerHTML = 'Your Notes ' + ' ' + '(' + notes_total.length + ')';
 }

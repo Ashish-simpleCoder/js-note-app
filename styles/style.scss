@@ -29,19 +29,21 @@ body {
 }
 
 .light {
-    --body-bg-clr: rgb(240, 255, 249);
+    --body-bg-clr: rgb(226, 250, 240);
     // --header-bottom-border-clr:rgb(147,8,211);      //clr-1
     --header-bottom-border-clr: rgb(0, 163, 0);
     --primary-clr: rgb(3, 134, 73);
-    --normal-font-clr: rgb(10, 10, 10);
+    --normal-font-clr: rgb(7, 7, 7);
 
     --create-btn-clr: rgb(206, 248, 234);
     --input-bg-clr: rgb(255, 255, 255);
     --placeholder-clr: rgb(22, 22, 22);
-    --input-focus-bg-clr: rgb(238, 238, 238);
+    --input-focus-bg-clr: rgb(255, 255, 255);
 
     --note-list-bg-clr: rgb(255, 255, 255);
+    --note-list-border: rgb(182, 240, 182);
     // --note-list-bg-clr: rgb(219, 255, 240);
+    --note-heading-border: rgb(68, 214, 129);
 
     --edit-btn-font-clr: green;
     --delete-btn-font-clr: rgb(172, 50, 2);
@@ -53,18 +55,22 @@ body {
     --delete-btn-hover-font-clr: rgb(189, 27, 35);
 }
 .dark-theme {
-    --body-bg-clr: rgb(30, 34, 36);
-    --header-bottom-border-clr: rgb(190, 95, 6); //color-1
+    --body-bg-clr: rgb(20, 32, 28);
+    --header-bottom-border-clr: rgb(23, 153, 29); //color-1
     //--header-bottom-border-clr:rgb(147,8,211);      //color-2
     --primary-clr: rgb(5, 255, 138);
-    --normal-font-clr: rgb(236, 235, 235);
+    --normal-font-clr: rgb(250, 250, 250);
 
     --create-btn-clr: rgb(0, 116, 77);
-    --input-bg-clr: rgb(8, 11, 12);
+    --input-bg-clr: rgb(5, 5, 5);
     --placeholder-clr: rgb(194, 194, 194);
-    --input-focus-bg-clr: rgb(22, 22, 22);
+    --input-focus-bg-clr: rgb(0, 0, 0);
 
-    --note-list-bg-clr: rgb(12, 12, 12);
+    // --note-list-bg-clr: rgb(12, 12, 12);
+    --note-list-bg-clr: rgb(0, 0, 0);
+    // --note-list-border: rgb(80, 62, 46);
+    --note-list-border: rgb(0, 0, 0);
+    --note-heading-border: rgb(19, 128, 52);
 
     --edit-btn-font-clr: green;
     --delete-btn-font-clr: rgb(172, 50, 2);
@@ -125,7 +131,7 @@ header {
         resize: none;
         background: var(--input-bg-clr);
         color: var(--normal-font-clr);
-        box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+        box-shadow: 0.3rem 0.3rem 1.5rem rgba(0, 0, 0, 0.3);
         &::placeholder {
             color: var(--placeholder-clr);
         }
@@ -190,12 +196,13 @@ header {
         grid-template-columns: 1fr;
     }
     .note-list {
-        height: clamp(15rem, 20rem, 20vw);
+        height: clamp(20rem, 20rem, 20vw);
         background: var(--note-list-bg-clr);
         color: var(--normal-font-clr);
         border-radius: 0.4rem;
         position: relative;
-        box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+        box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--note-list-border);
         &:hover,
         &:focus,
         &:focus-within {
@@ -205,7 +212,7 @@ header {
             height: clamp(20rem, 25rem, 20vw);
         }
         h2 {
-            border-bottom: 1px solid var(--header-bottom-border-clr);
+            border-bottom: 1px solid var(--note-heading-border);
             padding: 0.3rem 0.5rem;
             text-align: center;
             font-size: clamp(1.8rem, 2.2rem, 3vw);
@@ -216,8 +223,8 @@ header {
             }
         }
         p {
-            font-size: clamp(1.7rem, 2rem, 3vw);
-            padding: 0.3rem 0.5rem;
+            font-size: clamp(1.7rem, 1.7rem, 3vw);
+            padding: 0.5rem 0.5rem;
             font-weight: 200;
             overflow: hidden;
             height: 55%;
@@ -258,18 +265,22 @@ header {
 
 @keyframes create-active {
     0% {
-        transform: translateY(-20rem);
+        animation-timing-function: ease-in;
+        transform: translateY(-30rem);
         opacity: 0;
     }
     40% {
+        animation-timing-function: ease-out;
         transform: translateY(0) rotateX(35deg);
         opacity: 1;
-        background: rgb(80, 231, 231);
+        background: rgb(80, 231, 155);
     }
     60% {
-        transform: translateY(-2rem);
+        animation-timing-function: ease-in;
+        transform: translateY(-3rem);
     }
     100% {
+        animation-timing-funtion: ease-in;
         transform: translateY(0);
         opacity: 1;
     }

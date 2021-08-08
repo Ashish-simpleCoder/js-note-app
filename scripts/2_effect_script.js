@@ -1,3 +1,4 @@
+
 window.addEventListener('load', () => {
     let h1 = document.querySelector('header h1');
     h1.style.animation = `load-list 1s ease forwards`;
@@ -13,7 +14,14 @@ window.addEventListener('load', () => {
     }
 });
 
-const toggle_theme_btn = document.querySelector('.toggle-theme');
-toggle_theme_btn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
+const toggle_theme_btn = document.querySelector('.toggle-theme')
+toggle_theme_btn.addEventListener('click', function(){
+    this.classList.toggle('toggle_theme_class')
+    this.style.animation = 'toggle_btn_animation 0.5s ease forwards'
+    setTimeout(()=>{
+        this.style.animation=''
+        document.body.classList.toggle('dark-theme')
+    },500)
 });
+
+

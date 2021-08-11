@@ -102,7 +102,7 @@ function deleteNote(e) {
         note_output_section.classList.remove('note-output-section-active');
         let child_of_note_output_section = note_output_section.children;
         console.log(child_of_note_output_section);
-        
+
         let x = document.querySelectorAll('.show-note-list');
         for (let i = 0; i < x.length; i++)
             x[i].classList.remove('note-list-active');
@@ -137,27 +137,6 @@ function deleteNote(e) {
     }
 }
 
-// editor_view.addEventListener('click', (e) => {
-//     let item = e.target;
-//     if (item.classList[0] === 'save-todo') {
-//         let h2 = editor_view.querySelector('h2');
-//         let p = editor_view.querySelector('p');
-
-//         let notes = JSON.parse(localStorage.getItem('notes'));
-//         let new_notes = notes.map((note) => {
-//             if (note.id == h2.id) {
-//                 return {
-//                     ...note,
-//                     title: h2.textContent,
-//                     content: p.textContent,
-//                 };
-//             } else return note;
-//         });
-//         notes = new_notes;
-//         localStorage.setItem('notes', JSON.stringify(notes));
-//         editor_view.classList.remove('editor-view-active');
-//     }
-// });
 
 function editNote(new_user_notes, user_note_title) {
     let main_notes = new_user_notes.map((note) => {
@@ -195,3 +174,5 @@ function updateListNumber() {
     let h2 = document.querySelector('.user-section');
     h2.innerHTML = 'Your Notes ' + ' ' + '(' + notes_total.length + ')';
 }
+
+

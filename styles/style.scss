@@ -365,8 +365,8 @@ header {
 }
 @keyframes load-list {
     from {
-        transform: perspective(120rem) translateY(15rem) translateZ(10rem)
-            rotateX(20deg);
+        // transform: perspective(120rem) translateY(15rem) translateZ(10rem)
+        //     rotateX(20deg);
         opacity: 0;
     }
     to {

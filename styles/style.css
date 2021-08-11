@@ -547,8 +547,6 @@ header button .dark_text {
 
 @-webkit-keyframes load-list {
   from {
-    -webkit-transform: perspective(120rem) translateY(15rem) translateZ(10rem) rotateX(20deg);
-            transform: perspective(120rem) translateY(15rem) translateZ(10rem) rotateX(20deg);
     opacity: 0;
   }
   to {
@@ -560,8 +558,6 @@ header button .dark_text {
 
 @keyframes load-list {
   from {
-    -webkit-transform: perspective(120rem) translateY(15rem) translateZ(10rem) rotateX(20deg);
-            transform: perspective(120rem) translateY(15rem) translateZ(10rem) rotateX(20deg);
     opacity: 0;
   }
   to {

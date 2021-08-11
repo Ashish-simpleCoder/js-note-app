@@ -59,7 +59,8 @@ body {
     --delete-btn-hover-font-clr: rgb(189, 27, 35);
 }
 .dark-theme {
-    --body-bg-clr: rgb(20, 32, 28);
+    // --body-bg-clr: rgb(20, 32, 28);
+    --body-bg-clr:#074734;
     --header-bottom-border-clr: rgb(23, 153, 29); //color-1
     --primary-clr: rgb(5, 255, 138);
     --normal-font-clr: rgb(250, 250, 250);
@@ -110,8 +111,8 @@ header {
         align-items: center;
 
         span{
-            width:clamp(2.2rem,3rem,3vw);
-            height:clamp(2.2rem,3rem,3vw);
+            width:clamp(2.7rem,3rem,3vw);
+            height:clamp(2.7rem,3rem,3vw);
             margin-right:1rem;
             svg{
                 color:var(--note-icon-clr);
@@ -178,7 +179,7 @@ header {
 }
 .note-input-section {
     margin: 3rem auto;
-    width: clamp(30rem, 60rem, 50vw);
+    width: clamp(50rem, 60rem, 50vw);
     position: relative;
     @media screen and (max-width: 650px) {
         width: 100%;
@@ -252,7 +253,7 @@ header {
     margin-bottom: 4rem;
     min-height: 62vh;
     @media screen and (max-width: 600px){
-        grid-template-columns: 1fr;
+        grid-template-columns: 0.9fr;
     }
     .note-list {
         height: clamp(20rem, 20rem, 20vw);

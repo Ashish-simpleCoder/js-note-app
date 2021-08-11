@@ -61,7 +61,7 @@ body {
 }
 
 .dark-theme {
-  --body-bg-clr: rgb(20, 32, 28);
+  --body-bg-clr:#074734;
   --header-bottom-border-clr: rgb(23, 153, 29);
   --primary-clr: rgb(5, 255, 138);
   --normal-font-clr: rgb(250, 250, 250);
@@ -119,8 +119,8 @@ header h1 {
 }
 
 header h1 span {
-  width: clamp(2.2rem, 3rem, 3vw);
-  height: clamp(2.2rem, 3rem, 3vw);
+  width: clamp(2.7rem, 3rem, 3vw);
+  height: clamp(2.7rem, 3rem, 3vw);
   margin-right: 1rem;
 }
 
@@ -226,7 +226,7 @@ header button .dark_text {
 
 .note-input-section {
   margin: 3rem auto;
-  width: clamp(30rem, 60rem, 50vw);
+  width: clamp(50rem, 60rem, 50vw);
   position: relative;
 }
 
@@ -340,8 +340,8 @@ header button .dark_text {
 
 @media screen and (max-width: 600px) {
   .note-output-section {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
+    -ms-grid-columns: 0.9fr;
+        grid-template-columns: 0.9fr;
   }
 }
 
